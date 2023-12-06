@@ -1,5 +1,3 @@
-from math import floor
-
 file = open("input.txt", "r")
 
 tickets = [1] * len(file.readlines())
