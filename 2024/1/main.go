@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	leftArr := []int{}
-	rightArr := []int{}
+	leftArr := make([]int, 1000)
+	rightArr := make([]int, 1000)
 	rightCount := make(map[int]int)
 
 	file, err := os.ReadFile("input.txt")
@@ -18,11 +18,11 @@ func main() {
 		panic(err)
 	}
 
-	for _, line := range strings.Split(string(file), "\n") {
+	for i, line := range strings.Split(string(file), "\n") {
 		if len(line) == 0 {
 			continue
 		}
-		parts := strings.Split(line, "   ")
+		parts := strings.Fields(line)
 		leftNum, err := strconv.Atoi(parts[0])
 		if err != nil {
 			panic(err)
@@ -34,8 +34,8 @@ func main() {
 
 		rightCount[rightNum] = rightCount[rightNum] + 1
 
-		leftArr = append(leftArr, leftNum)
-		rightArr = append(rightArr, rightNum)
+		leftArr[i] = leftNum
+		rightArr[i] = rightNum
 	}
 
 	slices.Sort(leftArr)
