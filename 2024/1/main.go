@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"slices"
@@ -14,16 +13,15 @@ func main() {
 	rightArr := []int{}
 	rightCount := make(map[int]int)
 
-	file, err := os.Open("input.txt")
+	file, err := os.ReadFile("input.txt")
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
+	for _, line := range strings.Split(string(file), "\n") {
+		if len(line) == 0 {
+			continue
+		}
 		parts := strings.Split(line, "   ")
 		leftNum, err := strconv.Atoi(parts[0])
 		if err != nil {
@@ -47,15 +45,16 @@ func main() {
 	output1 := 0
 
 	for i := range 1000 {
+		//part 1
 		if leftArr[i] > rightArr[i] {
 			output += leftArr[i] - rightArr[i]
 		} else {
 			output += rightArr[i] - leftArr[i]
 		}
-		output1 += leftArr[i] * rightCount[leftArr[i]]
+		output1 += leftArr[i] * rightCount[leftArr[i]] //part 2
 	}
 
-	fmt.Println(output)
-	fmt.Println(output1)
+	fmt.Println("Part 1 Output:", output)
+	fmt.Println("Part 2 Output:", output1)
 
 }
