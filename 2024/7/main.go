@@ -96,6 +96,7 @@ func main() {
 			}
 		}
 
+		//part 2
 		for _, combo := range generateCombinations1(n - 1) {
 			current, err := strconv.Atoi(segments[0])
 			if err != nil {
