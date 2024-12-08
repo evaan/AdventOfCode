@@ -38,7 +38,6 @@ func generateCombinations1(n int) []string {
 		combos = append(combos, fmt.Sprintf("%0*b", n, i))
 	}
 
-	// Convert binary-like format to base-3 strings
 	for i := range combos {
 		combos[i] = toBase3(i, n)
 	}
